@@ -8,7 +8,7 @@
   },
   "scripts": {
     "audit:all": "pnpm audit && pnpm --recursive --no-bail exec pnpm audit",
-    "circular:check": "dpdm --exit-code circular:1 --warning false frontend/src/* infrastructure/src/*",
+    "circular:check": "dpdm --exit-code circular:1 --no-warning frontend/src/* infrastructure/src/*",
     "compile:all": "pnpm --recursive --parallel --no-bail compile",
     "css:check": "stylelint ./frontend/**/*.tsx",
     "format:check": "prettier --check .",

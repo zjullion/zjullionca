@@ -4,5 +4,5 @@
     "noEmit": true,
     "allowJs": true
   },
-  "include": [".eslintrc.js", "**/webpack.config.ts"]
+  "files": ["./.eslintrc.js", "./frontend/webpack.config.ts"]
 }

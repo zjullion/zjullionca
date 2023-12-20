@@ -83,6 +83,7 @@ const frontendConfig = {
   ...generateConfig('frontend', { browser: true, es6: true, node: false }),
 
   //config:
+  excludedFiles: 'webpack.config.ts',
   plugins: [
     ...commonPlugins,
     'eslint-plugin-jsx-a11y',
