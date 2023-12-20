@@ -1,0 +1,8 @@
+{
+  "extends": "./common.tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "allowJs": true
+  },
+  "include": [".eslintrc.js", "**/webpack.config.ts"]
+}
