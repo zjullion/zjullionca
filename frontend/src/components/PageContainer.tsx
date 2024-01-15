@@ -30,7 +30,7 @@ const StyledBarLink = styled(Link)<{ isCurrentUrl: boolean }>`
   border-radius: 3px;
   padding: 7px;
   margin: 0;
-  font-family: 'Roboto, "Open Sans", sans-serif';
+  font-family: 'Roboto', 'Open Sans', sans-serif;
   font-weight: bold;
   text-decoration: none;
   color: #27001b;
@@ -48,8 +48,32 @@ const ContentContainer = styled.div`
   background: white;
   color: black;
   margin: 15px auto;
-  width: min(95%, 1000px);
-  padding: 5px;
+  @media only screen and (min-width: 1621px) {
+    width: 60%;
+  }
+  @media only screen and (max-width: 1620px) {
+    width: 65%;
+  }
+  @media only screen and (max-width: 1080px) {
+    width: 70%;
+  }
+  @media only screen and (max-width: 810px) {
+    width: 75%;
+  }
+  @media only screen and (max-width: 675px) {
+    width: 80%;
+  }
+  @media only screen and (max-width: 540px) {
+    width: 85%;
+  }
+  @media only screen and (max-width: 450px) {
+    width: 90%;
+  }
+  @media only screen and (max-width: 360px) {
+    width: 95%;
+  }
+  min-width: 275px;
+  padding: 10px;
   border-radius: 5px;
 `
 
