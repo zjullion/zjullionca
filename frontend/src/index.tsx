@@ -5,9 +5,9 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { createGlobalStyle, StyleSheetManager } from 'styled-components'
 
+import { Contributions } from './components/Contributions'
 import { Home } from './components/Home'
 import { PageContainer } from './components/PageContainer'
-import { Projects } from './components/Projects'
 
 const componentsToTrack = [/PageContainer/, /Home/, /Projects/]
 
@@ -34,7 +34,7 @@ root.render(
         <Routes>
           <Route element={<PageContainer />} path="/">
             <Route element={<Home />} path="" />
-            <Route element={<Projects />} path="projects" />
+            <Route element={<Contributions />} path="contributions" />
           </Route>
         </Routes>
       </BrowserRouter>

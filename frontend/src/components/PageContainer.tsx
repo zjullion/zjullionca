@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react'
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import { Link, LinkProps, Outlet, useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 const COLOR_LIGHT_GREY = '#bdc1c9'
@@ -25,8 +25,10 @@ const LinkContainer = styled.div`
   gap: 20px;
 `
 
-const StyledBarLink = styled(Link)<{ isCurrentUrl: boolean }>`
-  background: ${(props) => (props.isCurrentUrl ? COLOR_LIGHT_GREY : 'white')};
+const useIsCurrentUrl = (props: LinkProps) => props?.to === useLocation()?.pathname
+
+const StyledBarLink = styled(Link)`
+  background: ${(props) => (useIsCurrentUrl(props) ? COLOR_LIGHT_GREY : 'white')};
   border-radius: 3px;
   padding: 7px;
   margin: 0;
@@ -38,7 +40,7 @@ const StyledBarLink = styled(Link)<{ isCurrentUrl: boolean }>`
     color: #00270c;
   }
   ${(props) => {
-    return props.isCurrentUrl
+    return useIsCurrentUrl(props)
       ? 'pointer-events: none;'
       : '&:hover { background: ${color(props.background).darken(0.1).hex()}; }'
   }}
@@ -88,19 +90,13 @@ const BottomBar = styled.div`
 `
 
 export const PageContainer: FunctionComponent = () => {
-  const { pathname } = useLocation()
-
   return (
     <>
       <MainTitle>Zach Jullion</MainTitle>
       <MainSubtitle>Senior Fullstack Software Developer</MainSubtitle>
       <LinkContainer>
-        <StyledBarLink isCurrentUrl={pathname === '/'} to="/">
-          Home
-        </StyledBarLink>
-        <StyledBarLink isCurrentUrl={pathname === '/projects'} to="/projects">
-          Projects & Contributions
-        </StyledBarLink>
+        <StyledBarLink to="/">Home</StyledBarLink>
+        <StyledBarLink to="/contributions">Open Source Contributions</StyledBarLink>
       </LinkContainer>
       <ContentContainer>
         <Outlet />
