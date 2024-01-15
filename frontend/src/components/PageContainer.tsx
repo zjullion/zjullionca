@@ -1,46 +1,87 @@
 import { FunctionComponent } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import { COLOR } from '../theme'
-import { StyledLink } from './StyledLink'
-
-const LINK_BACKGROUNDS = {
-  currentUrl: COLOR.BackgroundLightGrey,
-  default: 'white',
-}
+const COLOR_LIGHT_GREY = '#bdc1c9'
 
 const MainTitle = styled.h1`
   font-family: 'Alfa Slab One', serif;
   font-weight: normal;
-  color: ${COLOR.TextWhite};
+  color: white;
   margin: 5px 15px 0 15px;
 `
 const MainSubtitle = styled.h2`
   font-family: 'Kanit', sans-serif;
   font-weight: bold;
-  color: ${COLOR.TextWhite};
+  color: white;
   margin: 0 15px 5px 15px;
 `
 
 const LinkContainer = styled.div`
-  background: ${COLOR.BackgroundLightGrey};
+  background: ${COLOR_LIGHT_GREY};
   margin: 0;
   display: flex;
   padding: 5px 30px;
   gap: 20px;
 `
 
+const StyledBarLink = styled(Link)<{ isCurrentUrl: boolean }>`
+  background: ${(props) => (props.isCurrentUrl ? COLOR_LIGHT_GREY : 'white')};
+  border-radius: 3px;
+  padding: 7px;
+  margin: 0;
+  font-family: 'Roboto, "Open Sans", sans-serif';
+  font-weight: bold;
+  text-decoration: none;
+  color: #27001b;
+  &:hover {
+    color: #00270c;
+  }
+  ${(props) => {
+    return props.isCurrentUrl
+      ? 'pointer-events: none;'
+      : '&:hover { background: ${color(props.background).darken(0.1).hex()}; }'
+  }}
+`
+
+const ContentContainer = styled.div`
+  background: white;
+  color: black;
+  margin: 15px auto;
+  width: min(95%, 1000px);
+  padding: 5px;
+  border-radius: 5px;
+`
+
+const BottomBar = styled.div`
+  background: ${COLOR_LIGHT_GREY};
+  bottom: 0;
+  box-sizing: border-box;
+  color: black;
+  padding: 0.25em;
+  position: fixed;
+  width: 100%;
+`
+
 export const PageContainer: FunctionComponent = () => {
+  const { pathname } = useLocation()
+
   return (
     <>
       <MainTitle>Zach Jullion</MainTitle>
       <MainSubtitle>Senior Fullstack Software Developer</MainSubtitle>
       <LinkContainer>
-        <StyledLink backgrounds={LINK_BACKGROUNDS} content="Home" to="/" />
-        <StyledLink backgrounds={LINK_BACKGROUNDS} content="Projects" to="/projects" />
+        <StyledBarLink isCurrentUrl={pathname === '/'} to="/">
+          Home
+        </StyledBarLink>
+        <StyledBarLink isCurrentUrl={pathname === '/projects'} to="/projects">
+          Projects & Contributions
+        </StyledBarLink>
       </LinkContainer>
-      <Outlet />
+      <ContentContainer>
+        <Outlet />
+      </ContentContainer>
+      <BottomBar>testing</BottomBar>
     </>
   )
 }

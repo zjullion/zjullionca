@@ -3,12 +3,13 @@ import whyDidYouRender from '@welldone-software/why-did-you-render'
 import React, { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { StyleSheetManager } from 'styled-components'
+import { createGlobalStyle, StyleSheetManager } from 'styled-components'
 
+import { Home } from './components/Home'
 import { PageContainer } from './components/PageContainer'
-import { BodyStyle } from './theme'
+import { Projects } from './components/Projects'
 
-const componentsToTrack = [/PageContainer/, /StyledLink/]
+const componentsToTrack = [/PageContainer/, /Home/, /Projects/]
 
 if (process.env.NODE_ENV === 'development') {
   whyDidYouRender(React, { include: componentsToTrack })
@@ -17,6 +18,14 @@ if (process.env.NODE_ENV === 'development') {
 const container = document.getElementById('root') as HTMLElement
 const root = createRoot(container)
 
+export const BodyStyle = createGlobalStyle`
+  body {
+    background: linear-gradient(black, #000727) fixed;
+    margin: 0;
+    padding: 0;
+  }
+`
+
 root.render(
   <StrictMode>
     <StyleSheetManager shouldForwardProp={isPropValid}>
@@ -24,7 +33,8 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route element={<PageContainer />} path="/">
-            <Route element={<div></div>} path="balance_sheet" />
+            <Route element={<Home />} path="" />
+            <Route element={<Projects />} path="projects" />
           </Route>
         </Routes>
       </BrowserRouter>
