@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { createGlobalStyle, StyleSheetManager } from 'styled-components'
 
+import { Contact } from './components/Contact'
 import { Contributions } from './components/Contributions'
 import { Home } from './components/Home'
 import { PageContainer } from './components/PageContainer'
@@ -35,6 +36,7 @@ root.render(
           <Route element={<PageContainer />} path="/">
             <Route element={<Home />} path="" />
             <Route element={<Contributions />} path="contributions" />
+            <Route element={<Contact />} path="contact" />
           </Route>
         </Routes>
       </BrowserRouter>

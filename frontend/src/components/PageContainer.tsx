@@ -95,6 +95,7 @@ export const PageContainer: FunctionComponent = () => {
       <LinkContainer>
         <StyledBarLink to="/">Home</StyledBarLink>
         <StyledBarLink to="/contributions">Open Source Contributions</StyledBarLink>
+        <StyledBarLink to="/contact">Contact Me</StyledBarLink>
       </LinkContainer>
       <ContentContainer>
         <Outlet />

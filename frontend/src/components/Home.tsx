@@ -73,6 +73,10 @@ export const Home: FunctionComponent = () => {
             <SafeLink content="CDK" to="https://aws.amazon.com/cdk" />, and{' '}
             <SafeLink content="Amplify CLI" to="https://docs.amplify.aws/javascript/tools/cli" />
           </ListItem>
+          <ListItem>
+            Git and GitHub (including{' '}
+            <SafeLink content="GitHub Actions" to="https://github.com/features/actions" />)
+          </ListItem>
         </UnorderedList>
         <Text>I have some experience with:</Text>
         <UnorderedList>

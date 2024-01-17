@@ -32,9 +32,10 @@ export const Contributions: FunctionComponent = () => {
         <Text>
           This library is used to filter &quot;sensitive&quot; data (passwords, secrets, etc) from
           JavaScript objects. I originally wrote this library while working at the Alberta Motor
-          Association. Since then, multiple AMA developers have contributed to it. More recently,
+          Association. Since then, multiple AMA developers have contributed to it. Recently,
           I&apos;ve rewritten sensitive-param-filter in{' '}
-          <SafeLink content="TypeScript" to="https://www.typescriptlang.org" /> and begun publishing{' '}
+          <SafeLink content="TypeScript" to="https://www.typescriptlang.org" /> and started
+          publishing{' '}
           <SafeLink
             content="my own version"
             to="https://github.com/zjullion/sensitive-param-filter"
