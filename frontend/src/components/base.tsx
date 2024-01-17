@@ -42,7 +42,7 @@ export const SafeLink: FunctionComponent<SafeLinkProps> = (props) => {
 }
 
 export const Text = styled.p`
-  margin: 0;
+  margin: 0 0 2px 0;
   padding: 0;
   font-family: Montserrat, 'Open Sans', sans-serif;
 `

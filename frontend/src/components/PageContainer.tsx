@@ -28,7 +28,7 @@ const LinkContainer = styled.div`
 const useIsCurrentUrl = (props: LinkProps) => props?.to === useLocation()?.pathname
 
 const StyledBarLink = styled(Link)`
-  background: ${(props) => (useIsCurrentUrl(props) ? COLOR_LIGHT_GREY : 'white')};
+  background: ${(props) => (useIsCurrentUrl(props) ? 'white' : COLOR_LIGHT_GREY)};
   border-radius: 3px;
   padding: 7px;
   margin: 0;
@@ -40,9 +40,7 @@ const StyledBarLink = styled(Link)`
     color: #00270c;
   }
   ${(props) => {
-    return useIsCurrentUrl(props)
-      ? 'pointer-events: none;'
-      : '&:hover { background: ${color(props.background).darken(0.1).hex()}; }'
+    return useIsCurrentUrl(props) ? 'pointer-events: none;' : `&:hover { background: #dee0e4; }`
   }}
 `
 
