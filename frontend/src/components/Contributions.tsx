@@ -6,7 +6,7 @@ export const Contributions: FunctionComponent = () => {
   return (
     <FlexDiv>
       <FlexChild>
-        <Title>AWS Amplify CLI</Title>
+        <Title>AWS Amplify CLI (contributor)</Title>
         <Text>
           <SafeLink content="Homepage" to="https://github.com/aws-amplify/amplify-cli" />
         </Text>
@@ -25,7 +25,7 @@ export const Contributions: FunctionComponent = () => {
         </Text>
       </FlexChild>
       <FlexChild>
-        <Title>sensitive-param-filter</Title>
+        <Title>sensitive-param-filter (author)</Title>
         <Text>
           <SafeLink content="Homepage" to="https://github.com/amaabca/sensitive-param-filter" />
         </Text>
@@ -44,7 +44,7 @@ export const Contributions: FunctionComponent = () => {
         </Text>
       </FlexChild>
       <FlexChild>
-        <Title>zjullionca</Title>
+        <Title>zjullionca (author)</Title>
         <Text>
           <SafeLink content="Homepage" to="https://github.com/zjullion/zjullionca" />
         </Text>
@@ -67,7 +67,7 @@ export const Contributions: FunctionComponent = () => {
         </UnorderedList>
       </FlexChild>
       <FlexChild>
-        <Title>fetched-interval-cache</Title>
+        <Title>fetched-interval-cache (author)</Title>
         <Text>
           <SafeLink content="Homepage" to="https://github.com/zjullion/fetched-interval-cache" />
         </Text>

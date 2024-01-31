@@ -23,15 +23,13 @@ export const Image = styled.img`
 `
 
 export const ListItem = styled.li`
-  font-family: Montserrat, 'Open Sans', sans-serif;
+  font-family: Montserrat, sans-serif;
 `
 
-export type SafeLinkProps = {
+export const SafeLink: FunctionComponent<{
   content: string
   to: string
-}
-
-export const SafeLink: FunctionComponent<SafeLinkProps> = (props) => {
+}> = (props) => {
   const { content, to } = props
 
   return (
@@ -44,7 +42,7 @@ export const SafeLink: FunctionComponent<SafeLinkProps> = (props) => {
 export const Text = styled.p`
   margin: 0 0 2px 0;
   padding: 0;
-  font-family: Montserrat, 'Open Sans', sans-serif;
+  font-family: Montserrat, sans-serif;
 `
 
 export const Title = styled.h3`
