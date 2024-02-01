@@ -5,7 +5,6 @@
     "start": "webpack serve"
   },
   "devDependencies": {
-    "@types/color": "3.0.3",
     "@types/html-webpack-plugin": "^3.2.6",
     "@types/node": "^20.10.5",
     "@types/react": "^18.2.22",
@@ -24,7 +23,6 @@
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.2.1",
-    "color": "^4.2.3",
     "imask": "^6.6.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

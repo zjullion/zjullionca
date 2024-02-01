@@ -38,9 +38,6 @@ const config = {
     }),
   ],
   resolve: {
-    fallback: {
-      color: require.resolve('color'),
-    },
     plugins: [new TsconfigPathsPlugin({ baseUrl: './' })],
   },
   target: 'web',
