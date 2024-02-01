@@ -10,7 +10,20 @@ import { Contributions } from './components/Contributions'
 import { Home } from './components/Home'
 import { PageContainer } from './components/PageContainer'
 
-const componentsToTrack = [/PageContainer/, /Home/, /Projects/]
+const componentsToTrack = [
+  /PageContainer/,
+  /Home/,
+  /Contributions/,
+  /Contact/,
+  /FlexDiv/,
+  /FlexChild/,
+  /Image/,
+  /ListItem/,
+  /SafeLink/,
+  /Text/,
+  /Title/,
+  /UnorderedList/,
+]
 
 if (process.env.NODE_ENV === 'development') {
   whyDidYouRender(React, { include: componentsToTrack })
