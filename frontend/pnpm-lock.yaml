@@ -18,7 +18,7 @@ dependencies:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   react-router-dom:
-    specifier: ^6.7.0
+    specifier: ^6.21.0
     version: 6.21.0(react-dom@18.2.0)(react@18.2.0)
   styled-components:
     specifier: 6.1.1
@@ -26,28 +26,28 @@ dependencies:
 
 devDependencies:
   '@types/html-webpack-plugin':
-    specifier: ^3.2.6
+    specifier: ^3.2.9
     version: 3.2.9
   '@types/node':
     specifier: ^20.10.5
     version: 20.10.5
   '@types/react':
-    specifier: ^18.2.22
+    specifier: ^18.2.45
     version: 18.2.45
   '@types/react-dom':
-    specifier: ^18.0.10
+    specifier: ^18.2.18
     version: 18.2.18
   '@welldone-software/why-did-you-render':
     specifier: ^7.0.1
     version: 7.0.1(react@18.2.0)
   css-loader:
-    specifier: ^6.7.3
+    specifier: ^6.8.1
     version: 6.8.1(webpack@5.89.0)
   html-webpack-plugin:
-    specifier: ^5.5.0
+    specifier: ^5.6.0
     version: 5.6.0(webpack@5.89.0)
   style-loader:
-    specifier: ^3.3.2
+    specifier: ^3.3.3
     version: 3.3.3(webpack@5.89.0)
   ts-loader:
     specifier: ^9.5.1
@@ -56,19 +56,19 @@ devDependencies:
     specifier: ^10.9.2
     version: 10.9.2(@types/node@20.10.5)(typescript@4.9.5)
   tsconfig-paths-webpack-plugin:
-    specifier: ^4.0.0
+    specifier: ^4.1.0
     version: 4.1.0
   typescript:
-    specifier: ^4.9.4
+    specifier: ^4.9.5
     version: 4.9.5
   webpack:
-    specifier: ^5.75.0
+    specifier: ^5.89.0
     version: 5.89.0(webpack-cli@5.1.4)
   webpack-cli:
-    specifier: ^5.0.1
+    specifier: ^5.1.4
     version: 5.1.4(webpack-dev-server@4.15.1)(webpack@5.89.0)
   webpack-dev-server:
-    specifier: ^4.11.1
+    specifier: ^4.15.1
     version: 4.15.1(webpack-cli@5.1.4)(webpack@5.89.0)
 
 packages:
@@ -1286,8 +1286,8 @@ packages:
     hasBin: true
     dev: true
 
-  /follow-redirects@1.15.3:
-    resolution: {integrity: sha512-1VzOtuEM8pC9SFU1E+8KfTjZyMztRsgEfwQl44z8A25uy13jSzTj6dyK2Df52iV0vgHCfBwLhDWevLn95w5v6Q==}
+  /follow-redirects@1.15.5:
+    resolution: {integrity: sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -1518,7 +1518,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.3
+      follow-redirects: 1.15.5
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
