@@ -6,25 +6,6 @@ export const Contributions: FunctionComponent = () => {
   return (
     <FlexDiv>
       <FlexChild>
-        <Title>AWS Amplify CLI (contributor)</Title>
-        <Text>
-          <SafeLink content="Homepage" to="https://github.com/aws-amplify/amplify-cli" />
-        </Text>
-        <Text>
-          The AWS Amplify CLI is a tool for rapidly building AWS backends with minimal AWS
-          knowledge. Early versions of Amplify CLI only supported a very limited set of AWS
-          resources. For nearly a year, the community asked for a way to deploy &quot;custom&quot;
-          AWS resources using Amplify CLI. In May 2019, while I was working at the Alberta Motor
-          Association, I{' '}
-          <SafeLink
-            content="found a way to deploy custom resources"
-            to="https://github.com/aws-amplify/amplify-cli/issues/80#issuecomment-492428916"
-          />
-          . My method for deploying custom resources became part of the official documentation for
-          several years (until the process was changed).
-        </Text>
-      </FlexChild>
-      <FlexChild>
         <Title>sensitive-param-filter (author)</Title>
         <Text>
           <SafeLink content="Homepage" to="https://github.com/amaabca/sensitive-param-filter" />
@@ -44,6 +25,25 @@ export const Contributions: FunctionComponent = () => {
         </Text>
       </FlexChild>
       <FlexChild>
+        <Title>AWS Amplify CLI (contributor)</Title>
+        <Text>
+          <SafeLink content="Homepage" to="https://github.com/aws-amplify/amplify-cli" />
+        </Text>
+        <Text>
+          The AWS Amplify CLI is a tool for rapidly building AWS backends with minimal AWS
+          knowledge. Early versions of Amplify CLI only supported a very limited set of AWS
+          resources. For nearly a year, the community asked for a way to deploy &quot;custom&quot;
+          AWS resources using Amplify CLI. In May 2019, while I was working at the Alberta Motor
+          Association, I{' '}
+          <SafeLink
+            content="found a way to deploy custom resources"
+            to="https://github.com/aws-amplify/amplify-cli/issues/80#issuecomment-492428916"
+          />
+          . My method for deploying custom resources became part of the official documentation for
+          several years (until the process was changed).
+        </Text>
+      </FlexChild>
+      <FlexChild>
         <Title>zjullionca (author)</Title>
         <Text>
           <SafeLink content="Homepage" to="https://github.com/zjullion/zjullionca" />
@@ -52,7 +52,9 @@ export const Contributions: FunctionComponent = () => {
           The repository for this website! This repo contains a{' '}
           <SafeLink content="ReactJS" to="https://react.dev" /> frontend written in TypeScript,
           which is deployed to AWS using <SafeLink content="CDK" to="https://aws.amazon.com/cdk/" />
-          . Additionally, code quality / style rules are enforced using the following tools:
+          . Notably, <SafeLink content="create-react-app" to="https://create-react-app.dev/" /> is
+          not used (React is setup &lsquo;manually&rsquo;). Additionally, code quality / style rules
+          are enforced using the following tools:
         </Text>
         <UnorderedList>
           <ListItem>

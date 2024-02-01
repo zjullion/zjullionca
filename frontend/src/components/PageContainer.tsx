@@ -63,7 +63,6 @@ const StyledBarLink = styled(Link)`
   padding: 7px;
   margin: 0;
   height: fit-content;
-  width: min-content;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
   text-decoration: none;

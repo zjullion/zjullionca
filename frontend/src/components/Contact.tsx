@@ -6,7 +6,7 @@ import { FlexChild, FlexDiv, SafeLink, Text, Title } from './base'
 const INPUT_CSS = css`
   border-radius: 2px;
   padding: 2px;
-  margin: 3px 0 18px 5px;
+  margin: 2px 0 12px 5px;
   font-size: 0.95em;
 `
 
