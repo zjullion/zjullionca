@@ -2,7 +2,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import * as path from 'path'
 import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin'
 
-const commonConfig = {
+const config = {
   devServer: {
     historyApiFallback: true,
     open: true,
@@ -42,4 +42,4 @@ const commonConfig = {
   target: 'web',
 }
 
-export default commonConfig
+export default config
