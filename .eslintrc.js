@@ -74,7 +74,7 @@ const generateConfig = (directory, env) => ({
   },
 })
 
-const backendDirs = ['createUser']
+const backendDirs = ['addVisitor', 'sendEmail']
 const backendOverrides = backendDirs.map((directory) => ({
   ...generateConfig(`backend/${directory}`, { browser: false, es6: true, node: true }),
 }))
