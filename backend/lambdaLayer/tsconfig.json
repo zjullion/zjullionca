@@ -1,9 +1,7 @@
 {
   "extends": "../../common.tsconfig.json",
   "compilerOptions": {
-    "noEmit": false,
     "paths": {
-      "/opt/nodejs/*": ["../lambdaLayer/src/*"],
       "shared/*": ["../../shared/src/*"]
     }
   },

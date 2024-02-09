@@ -43,19 +43,25 @@ export const Contact: FunctionComponent = () => {
 
   const submit = async () => {
     setIsSubmitting(true)
+    let hasError = false
 
     if (name.length === 0) {
       setNameError('Name required.')
+      hasError = true
     }
     if (email.length === 0) {
       setEmailError('Email required.')
+      hasError = true
     } else if (!EMAIL_REGEX.test(email)) {
       setEmailError('Invalid email.')
+      hasError = true
     }
     if (message.length === 0) {
       setMessageError('Message required.')
+      hasError = true
     }
-    if (nameError != null || emailError != null || messageError != null) {
+
+    if (hasError) {
       setIsSubmitting(false)
       return
     }
@@ -64,7 +70,7 @@ export const Contact: FunctionComponent = () => {
 
     grecaptcha.ready(() => {
       grecaptcha
-        .execute('6LdT_2QpAAAAAKa5xr-stEqcBbAILRqV-hFMyecR', { action: 'submit-contact-form' })
+        .execute('6LfkfW0pAAAAAGOhMBGOAN5Tz5r6eAIXn4zSanRV', { action: 'submit_contact_form' })
         .then((token) => {
           // TODO: submit stuff
           console.log(token)
