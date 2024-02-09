@@ -3,7 +3,7 @@ name: Deployment
 on:
   push:
     branches:
-      - master
+      - setup-deploys
 
 permissions:
   id-token: write
@@ -24,7 +24,7 @@ jobs:
       - run: pnpm install:all
       - uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.ACCOUNT }}:role/my-github-actions-role
+          role-to-assume: arn:aws:iam::${{ secrets.ACCOUNT }}:role/GitHub-Actions-CDK-Deploy-Role
       - run: pnpm build
         env:
           ACCOUNT: ${{ secrets.ACCOUNT }}
