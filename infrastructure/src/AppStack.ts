@@ -5,6 +5,7 @@ import { Source } from 'aws-cdk-lib/aws-s3-deployment'
 import { Construct } from 'constructs'
 
 import { HostingConstruct } from './HostingConstruct'
+import { Node20Lambda } from './Node20Lambda'
 
 export type AppStackConfig = {
   certificateArn: string
@@ -30,6 +31,13 @@ export class AppStack extends Stack {
       stage,
       url,
       zone,
+    })
+
+    new Node20Lambda(this, 'sendEmail', {
+      codeDirectory: '../backend/sendEmail',
+      environment: {},
+      name: 'sendEmail',
+      stage,
     })
   }
 }
