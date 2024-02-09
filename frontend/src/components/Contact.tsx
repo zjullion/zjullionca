@@ -43,6 +43,7 @@ export const Contact: FunctionComponent = () => {
 
   const submit = async () => {
     setIsSubmitting(true)
+
     if (name.length === 0) {
       setNameError('Name required.')
     }
@@ -54,9 +55,24 @@ export const Contact: FunctionComponent = () => {
     if (message.length === 0) {
       setMessageError('Message required.')
     }
-    if (nameError == null && emailError == null && messageError == null) {
-      console.log('TODO')
+    if (nameError != null || emailError != null || messageError != null) {
+      setIsSubmitting(false)
+      return
     }
+
+    const resolve = () => null
+
+    grecaptcha.ready(() => {
+      grecaptcha
+        .execute('6LdT_2QpAAAAAKa5xr-stEqcBbAILRqV-hFMyecR', { action: 'submit-contact-form' })
+        .then((token) => {
+          // TODO: submit stuff
+          console.log(token)
+          // TODO: call resolve when done
+        })
+    })
+
+    await new Promise(resolve)
     setIsSubmitting(false)
   }
 

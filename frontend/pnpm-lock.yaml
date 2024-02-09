@@ -25,6 +25,9 @@ dependencies:
     version: 6.1.1(react-dom@18.2.0)(react@18.2.0)
 
 devDependencies:
+  '@types/grecaptcha':
+    specifier: ^3.0.7
+    version: 3.0.7
   '@types/html-webpack-plugin':
     specifier: ^3.2.9
     version: 3.2.9
@@ -235,6 +238,10 @@ packages:
       '@types/express-serve-static-core': 4.17.41
       '@types/qs': 6.9.10
       '@types/serve-static': 1.15.5
+    dev: true
+
+  /@types/grecaptcha@3.0.7:
+    resolution: {integrity: sha512-ah5GDQfsiK3dnkaCbYcDFZXkZCG3o90VRu9hzXHnSe4kACrRB1KUI/ZyWHvYmqm1W5Tl8B5YxxT98uGTlkbf2Q==}
     dev: true
 
   /@types/html-minifier-terser@6.1.0:
