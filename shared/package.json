@@ -1,0 +1,14 @@
+{
+  "name": "shared",
+  "private": true,
+  "engines": {
+    "node": "20",
+    "pnpm": "8"
+  },
+  "scripts": {
+    "compile": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  }
+}
