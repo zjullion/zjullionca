@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "build": "webpack",
+    "build": "rm -rf dist && pnpm webpack --mode production && mkdir dist/img && cp public/img/* dist/img",
     "compile": "tsc",
-    "start": "webpack serve"
+    "start": "webpack serve --mode development"
   },
   "devDependencies": {
     "@types/grecaptcha": "^3.0.7",

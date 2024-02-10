@@ -1,0 +1,32 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v3
+        with:
+          cache: 'pnpm'
+          node-version: 20
+      - run: pnpm install:all
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: us-east-1
+          role-to-assume: arn:aws:iam::${{ secrets.ACCOUNT }}:role/GitHub-Actions-CDK-Deploy-Role
+      - run: pnpm build
+        env:
+          ACCOUNT: ${{ secrets.ACCOUNT }}
+          CERT_ARN: ${{ secrets.CERT_ARN }}
