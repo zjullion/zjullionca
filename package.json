@@ -9,7 +9,7 @@
   },
   "scripts": {
     "audit:all": "pnpm audit && pnpm --recursive --no-bail exec pnpm audit",
-    "build": "pnpm --dir frontend build && pnpm --dir infrastructure build",
+    "aws:deploy": "pnpm --dir frontend build && pnpm --dir infrastructure aws:deploy",
     "circular:check": "dpdm --exit-code circular:1 --no-warning frontend/src/* infrastructure/src/*",
     "compile:all": "pnpm --recursive --parallel --no-bail compile",
     "css:check": "stylelint ./frontend/**/*.tsx",
