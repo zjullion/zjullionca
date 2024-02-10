@@ -12,7 +12,7 @@ const INPUT_CSS = css`
 
 const StyledInput = styled.input`
   ${INPUT_CSS}
-  ${(props) => `width: ${(props.maxLength ?? 30) * 0.35}em;`}
+  ${(props) => `width: ${(props.maxLength ?? 30) * 0.3}em;`}
 `
 
 const StyledTextArea = styled.textarea`
@@ -107,7 +107,7 @@ export const Contact: FunctionComponent = () => {
         <br />
         {messageError != null ? <ErrorMessage>{messageError}</ErrorMessage> : undefined}
         <StyledTextArea
-          cols={35}
+          cols={30}
           maxLength={500}
           onChange={(event) => {
             setMessage(event?.target?.value)

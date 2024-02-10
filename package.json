@@ -2,12 +2,14 @@
   "name": "zjullion.ca",
   "version": "0.0.1",
   "description": "Website for software developer Zach Jullion",
+  "license": "MIT",
   "engines": {
     "node": "20",
     "pnpm": "8"
   },
   "scripts": {
     "audit:all": "pnpm audit && pnpm --recursive --no-bail exec pnpm audit",
+    "aws:deploy": "pnpm --dir frontend build && pnpm --dir infrastructure aws:deploy",
     "circular:check": "dpdm --exit-code circular:1 --no-warning frontend/src/* infrastructure/src/*",
     "compile:all": "pnpm --recursive --parallel --no-bail compile",
     "css:check": "stylelint ./frontend/**/*.tsx",

@@ -13,7 +13,7 @@ const account = process.env.ACCOUNT
 const certificateArn = process.env.CERT_ARN
 
 if (account == null || certificateArn == null) {
-  throw new Error('Failed to load "../prod.env".')
+  throw new Error('Failed to load env variables!')
 }
 
 const app = new cdk.App()

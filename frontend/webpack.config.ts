@@ -12,7 +12,6 @@ const config = {
     },
   },
   entry: './src/index.tsx',
-  mode: 'development',
   module: {
     rules: [
       {
