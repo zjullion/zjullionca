@@ -24,6 +24,7 @@ jobs:
       - run: pnpm install:all
       - uses: aws-actions/configure-aws-credentials@v4
         with:
+          aws-region: us-east-1
           role-to-assume: arn:aws:iam::${{ secrets.ACCOUNT }}:role/GitHub-Actions-CDK-Deploy-Role
       - run: pnpm build
         env:
