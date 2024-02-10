@@ -3,7 +3,7 @@ name: Deployment
 on:
   push:
     branches:
-      - setup-deploys
+      - master
 
 permissions:
   id-token: write
