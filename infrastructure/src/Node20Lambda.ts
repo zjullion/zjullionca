@@ -29,10 +29,10 @@ export class Node20Lambda<T extends LambdaEnvironment> extends Construct {
     })
 
     new Function(this, `${id}-${stage}`, {
-      code: Code.fromAsset(`${codeDirectory}/dist/main.js`),
+      code: Code.fromAsset(`${codeDirectory}/dist`),
       environment,
       functionName,
-      handler: 'main.handler',
+      handler: 'index.handler',
       layers,
       logGroup,
       runtime: Runtime.NODEJS_20_X,
