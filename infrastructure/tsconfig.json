@@ -1,7 +1,10 @@
 {
   "extends": "../common.tsconfig.json",
   "compilerOptions": {
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "shared/*": ["../shared/src/*"]
+    }
   },
   "include": ["./scripts/**/*", "./src/**/*"]
 }
