@@ -6,6 +6,7 @@ import { Construct } from 'constructs'
 
 import { HostingConstruct } from './HostingConstruct'
 import { Node20Lambda } from './Node20Lambda'
+import { SesTemplate } from './SesTemplate'
 
 export type AppStackConfig = {
   certificateArn: string
@@ -18,7 +19,6 @@ export type AppStackConfig = {
 export class AppStack extends Stack {
   constructor(scope: Construct, id: string, props: StackProps & AppStackConfig) {
     super(scope, id, props)
-
     const { certificateArn, tags, url } = props
     const stage = tags?.stage ?? 'temp'
 
@@ -31,6 +31,13 @@ export class AppStack extends Stack {
       stage,
       url,
       zone,
+    })
+
+    new SesTemplate(this, 'contact-request-template', {
+      htmlTemplate: 'contactRequest',
+      stage,
+      subjectPart: 'You have a contact request from {{name}}',
+      templateName: 'contact-request-template',
     })
 
     new Node20Lambda(this, 'sendEmail', {

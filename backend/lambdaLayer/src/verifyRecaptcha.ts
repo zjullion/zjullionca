@@ -19,7 +19,9 @@ const verifyRecaptcha = async (token: string) => {
         return
       }
     }
-  } catch {}
+  } catch {
+    // More complex error handling is out of scope
+  }
   throw new Error('reCAPTCHA verification failed.')
 }
 
