@@ -3,7 +3,7 @@
   "compilerOptions": {
     "noEmit": true,
     "paths": {
-      "/opt/nodejs/*": ["../lambdaLayer/src/*"],
+      "/opt/*": ["../lambdaLayer/src/*"],
       "shared/*": ["../../shared/src/*"]
     }
   },

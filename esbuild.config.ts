@@ -7,8 +7,8 @@ backendDirectories.forEach((directory) => {
   esbuild.build({
     bundle: true,
     entryPoints: [`backend/${directory}/src/*`],
-    external: ['/opt/nodejs/*', '@aws-sdk/*'],
-    format: 'esm',
+    external: ['/opt/*', '@aws-sdk/*'],
+    format: 'cjs',
     keepNames: true,
     outdir: `backend/${directory}/dist`,
     platform: 'node',

@@ -2,8 +2,8 @@ import { SendEmailCommand, SESv2Client } from '@aws-sdk/client-sesv2'
 import { Handler } from 'aws-lambda'
 import { ContactRequestEnvironment, ContactRequestEvent } from 'shared/types'
 
-import sanitize from '/opt/nodejs/sanitize'
-import verifyRecaptcha from '/opt/nodejs/verifyRecaptcha'
+import sanitize from '/opt/sanitize'
+import verifyRecaptcha from '/opt/verifyRecaptcha'
 
 declare const process: {
   env: ContactRequestEnvironment
@@ -21,12 +21,12 @@ export const handler: Handler = async (event: ContactRequestEvent) => {
       new SendEmailCommand({
         Content: {
           Template: {
+            TemplateArn: process.env.TEMPLATE_ARN,
             TemplateData: JSON.stringify({
               email: sanitize(email),
               message: sanitize(message),
               name: sanitize(name),
             }),
-            TemplateArn: process.env.TEMPLATE_ARN,
           },
         },
         Destination: {

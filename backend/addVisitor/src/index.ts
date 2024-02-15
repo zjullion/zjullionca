@@ -1,7 +1,7 @@
 import { Handler } from 'aws-lambda'
 import { AddVisitorEnvironment, AddVisitorEvent } from 'shared/types'
 
-import verifyRecaptcha from '/opt/nodejs/verifyRecaptcha'
+import verifyRecaptcha from '/opt/verifyRecaptcha'
 
 declare const process: {
   env: AddVisitorEnvironment
