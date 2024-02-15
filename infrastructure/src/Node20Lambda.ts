@@ -24,6 +24,7 @@ export type Node20LambdaConfig<T extends LambdaEnvironment> = {
 
 /**
  * A lambda function, configured with the code and permissions provided.
+ * A log group (and permissions for it) are also created.
  */
 export class Node20Lambda<T extends LambdaEnvironment> extends Construct {
   constructor(scope: Construct, id: string, props: Node20LambdaConfig<T>) {
