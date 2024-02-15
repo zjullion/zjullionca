@@ -1,5 +1,6 @@
 import { Stack, StackProps } from 'aws-cdk-lib'
 import { Certificate } from 'aws-cdk-lib/aws-certificatemanager'
+import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam'
 import { Code, LayerVersion, Runtime } from 'aws-cdk-lib/aws-lambda'
 import { HostedZone } from 'aws-cdk-lib/aws-route53'
 import { Source } from 'aws-cdk-lib/aws-s3-deployment'
@@ -9,7 +10,6 @@ import { AddVisitorEnvironment, ContactRequestEnvironment } from 'shared/types'
 import { HostingConstruct } from './HostingConstruct'
 import { Node20Lambda } from './Node20Lambda'
 import { SesTemplate } from './SesTemplate'
-import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam'
 
 export type AppStackConfig = {
   certificateArn: string
@@ -20,7 +20,7 @@ export type AppStackConfig = {
 }
 
 /**
- * Constructs a one-per-stage stack that consists of: TODO
+ * Constructs a one-per-stage stack.
  */
 export class AppStack extends Stack {
   constructor(scope: Construct, id: string, props: StackProps & AppStackConfig) {

@@ -70,7 +70,7 @@ export const Contact: FunctionComponent = () => {
 
     grecaptcha.ready(() => {
       grecaptcha
-        .execute('6LfkfW0pAAAAAGOhMBGOAN5Tz5r6eAIXn4zSanRV', { action: 'submit_contact_form' })
+        .execute('6LdT_2QpAAAAAKa5xr-stEqcBbAILRqV-hFMyecR', { action: 'submit_contact_form' })
         .then((token) => {
           // TODO: submit stuff
           console.log(token)

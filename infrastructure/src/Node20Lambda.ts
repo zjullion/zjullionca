@@ -60,8 +60,8 @@ export class Node20Lambda<T extends LambdaEnvironment> extends Construct {
       handler: 'index.handler',
       layers,
       logGroup,
-      runtime: Runtime.NODEJS_20_X,
       role,
+      runtime: Runtime.NODEJS_20_X,
       timeout: timeout ?? Duration.seconds(5),
     })
   }

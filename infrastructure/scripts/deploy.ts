@@ -31,7 +31,7 @@ new AppStack(app, 'zjullionca', {
   contactRequestEmailDestination,
   contactRequestEmailSource,
   env: { account, region: 'us-east-1' },
-  tags: { managed: 'cdk', owner: 'zjullion.ca', stage: 'prod' },
   recaptchaSecret,
+  tags: { managed: 'cdk', owner: 'zjullion.ca', stage: 'prod' },
   url: 'zjullion.ca',
 })
