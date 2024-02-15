@@ -1,6 +1,14 @@
 import { Handler } from 'aws-lambda'
+import { AddVisitorEnvironment, AddVisitorEvent } from 'shared/types'
 
-export const handler: Handler = async (event, context) => {
-  console.log('EVENT: \n' + JSON.stringify(event, null, 2))
-  return context.logStreamName
+import verifyRecaptcha from '/opt/nodejs/verifyRecaptcha'
+
+declare const process: {
+  env: AddVisitorEnvironment
+}
+
+export const handler: Handler = async (event: AddVisitorEvent) => {
+  const { cookieUuid, recaptchaToken } = event
+
+  await verifyRecaptcha(recaptchaToken)
 }

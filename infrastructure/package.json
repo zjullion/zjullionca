@@ -6,7 +6,6 @@
     "pnpm": "8"
   },
   "scripts": {
-    "aws:deploy": "cdk deploy --require-approval never",
     "compile": "tsc"
   },
   "devDependencies": {

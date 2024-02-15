@@ -1,12 +1,11 @@
 const replaceMap: { [key: string]: string } = {
-  '&': '&amp;',
-  '<': '&lt;',
-  '>': '&gt;',
   '"': '&quot;',
   "'": '&#39;',
   '/': '&#x2F;',
-  '`': '&#x60;',
+  '<': '&lt;',
   '=': '&#x3D;',
+  '>': '&gt;',
+  '`': '&#x60;',
 }
 
 const sanitize = (input: string) => {

@@ -13,12 +13,14 @@ const account = process.env.ACCOUNT
 const certificateArn = process.env.CERT_ARN
 const contactRequestEmailDestination = process.env.CONTACT_REQUEST_EMAIL_DESTINATION
 const contactRequestEmailSource = process.env.CONTACT_REQUEST_EMAIL_SOURCE
+const recaptchaSecret = process.env.RECAPTCHA_SECRET
 
 if (
   account == null ||
   certificateArn == null ||
   contactRequestEmailDestination == null ||
-  contactRequestEmailSource == null
+  contactRequestEmailSource == null ||
+  recaptchaSecret == null
 ) {
   throw new Error('Failed to load env variables!')
 }
@@ -30,5 +32,6 @@ new AppStack(app, 'zjullionca', {
   contactRequestEmailSource,
   env: { account, region: 'us-east-1' },
   tags: { managed: 'cdk', owner: 'zjullion.ca', stage: 'prod' },
+  recaptchaSecret,
   url: 'zjullion.ca',
 })
