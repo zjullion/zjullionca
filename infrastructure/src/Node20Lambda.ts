@@ -6,7 +6,7 @@ import {
   Role,
   ServicePrincipal,
 } from 'aws-cdk-lib/aws-iam'
-import { Code, Function, LayerVersion, Runtime } from 'aws-cdk-lib/aws-lambda'
+import { Code, Function as LambdaFunction, LayerVersion, Runtime } from 'aws-cdk-lib/aws-lambda'
 import { LogGroup, RetentionDays } from 'aws-cdk-lib/aws-logs'
 import { Construct } from 'constructs'
 
@@ -27,6 +27,8 @@ export type Node20LambdaConfig<T extends LambdaEnvironment> = {
  * A log group (and permissions for it) are also created.
  */
 export class Node20Lambda<T extends LambdaEnvironment> extends Construct {
+  private lambdaFunction: LambdaFunction
+
   constructor(scope: Construct, id: string, props: Node20LambdaConfig<T>) {
     super(scope, id)
     const { codeDirectory, environment, layers, name, policies, stage, timeout } = props
@@ -53,7 +55,7 @@ export class Node20Lambda<T extends LambdaEnvironment> extends Construct {
       },
     })
 
-    new Function(this, `${id}-${stage}`, {
+    this.lambdaFunction = new LambdaFunction(this, `${id}-${stage}`, {
       code: Code.fromAsset(`${codeDirectory}/dist`),
       environment,
       functionName,
@@ -64,5 +66,9 @@ export class Node20Lambda<T extends LambdaEnvironment> extends Construct {
       runtime: Runtime.NODEJS_20_X,
       timeout: timeout ?? Duration.seconds(5),
     })
+  }
+
+  public get function() {
+    return this.lambdaFunction
   }
 }

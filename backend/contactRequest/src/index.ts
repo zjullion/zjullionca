@@ -14,7 +14,14 @@ const sesClient = new SESv2Client()
 export const handler: Handler = async (event: ContactRequestEvent) => {
   const { email, message, name, recaptchaToken } = event
 
-  await verifyRecaptcha(recaptchaToken)
+  try {
+    await verifyRecaptcha(recaptchaToken)
+  } catch {
+    return {
+      body: 'reCAPTCHA verification failed - please try again.',
+      statusCode: 500,
+    }
+  }
 
   try {
     await sesClient.send(
@@ -35,7 +42,10 @@ export const handler: Handler = async (event: ContactRequestEvent) => {
         FromEmailAddress: process.env.EMAIL_SOURCE,
       }),
     )
-  } catch {
-    throw new Error('Email sending failed.')
+  } catch (error) {
+    return {
+      body: 'Message sending failed - please try again.',
+      statusCode: 500,
+    }
   }
 }
