@@ -1,4 +1,5 @@
 import { FunctionComponent, useState } from 'react'
+import { ContactRequestEvent } from 'shared/types'
 import { css, styled } from 'styled-components'
 
 import { FlexChild, FlexDiv, SafeLink, Text, Title } from './base'
@@ -8,6 +9,7 @@ const INPUT_CSS = css`
   padding: 2px;
   margin: 2px 0 12px 5px;
   font-size: 0.95em;
+  font-family: sans-serif;
 `
 
 const StyledInput = styled.input`
@@ -21,6 +23,11 @@ const StyledTextArea = styled.textarea`
 
 const ErrorMessage = styled(Text)`
   color: red;
+  margin: 0 0 0 5px;
+`
+
+const SuccessMessage = styled(Text)`
+  color: green;
   margin: 0 0 0 5px;
 `
 
@@ -40,8 +47,11 @@ export const Contact: FunctionComponent = () => {
   const [messageError, setMessageError] = useState<string | undefined>()
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const [submitSuccess, setSubmitSuccess] = useState<boolean>(false)
+  const [submitError, setSubmitError] = useState<string | undefined>()
 
   const submit = async () => {
+    setSubmitError(undefined)
     setIsSubmitting(true)
     let hasError = false
 
@@ -66,20 +76,45 @@ export const Contact: FunctionComponent = () => {
       return
     }
 
-    const resolve = () => null
+    let resolveFetch: (error?: string) => void = () => null
+    const fetchPromise = new Promise<string | undefined>((resolve) => {
+      resolveFetch = resolve
+    })
 
     grecaptcha.ready(() => {
       grecaptcha
         .execute('6LdT_2QpAAAAAKa5xr-stEqcBbAILRqV-hFMyecR', { action: 'submit_contact_form' })
-        .then((token) => {
-          // TODO: submit stuff
-          console.log(token)
-          // TODO: call resolve when done
-        })
+        .then(
+          async (recaptchaToken) => {
+            const event: ContactRequestEvent = { email, message, name, recaptchaToken }
+            try {
+              const response = await fetch(
+                new Request('api.zjullion.ca/contact-request', {
+                  body: new URLSearchParams(event),
+                }),
+              )
+              if (response.status === 200) {
+                resolveFetch()
+              } else {
+                resolveFetch(await response.text())
+              }
+            } catch {
+              resolveFetch('An unexpected error occurred - please try again.')
+            }
+          },
+          () => {
+            resolveFetch('An unexpected error occurred - please try again.')
+          },
+        )
     })
 
-    await new Promise(resolve)
-    setIsSubmitting(false)
+    const error = await fetchPromise
+    if (error == null) {
+      setSubmitSuccess(true)
+    } else {
+      setSubmitError(error)
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -142,6 +177,10 @@ export const Contact: FunctionComponent = () => {
         <StyledButton disabled={isSubmitting} onClick={submit}>
           Submit
         </StyledButton>
+        {submitError != null ? <ErrorMessage>{submitError}</ErrorMessage> : undefined}
+        {submitSuccess ? (
+          <SuccessMessage>Your message has been received.</SuccessMessage>
+        ) : undefined}
       </FlexChild>
     </FlexDiv>
   )
