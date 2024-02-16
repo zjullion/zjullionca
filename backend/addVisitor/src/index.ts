@@ -11,4 +11,6 @@ export const handler: Handler = async (event: AddVisitorEvent) => {
   const { cookieUuid, recaptchaToken } = event
 
   await verifyRecaptcha(recaptchaToken)
+
+  // TODO
 }

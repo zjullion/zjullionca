@@ -1,9 +1,10 @@
 import esbuild from 'esbuild'
-import { readdirSync } from 'fs'
-import { resolve } from 'path'
+import { readdirSync, rmSync } from 'fs'
 
-const backendDirectories = readdirSync(resolve(__dirname, 'backend'))
+const backendDirectories = readdirSync('backend')
 backendDirectories.forEach((directory) => {
+  rmSync(`backend/${directory}/dist`, { force: true, recursive: true })
+
   esbuild.build({
     bundle: true,
     entryPoints: [`backend/${directory}/src/*`],
