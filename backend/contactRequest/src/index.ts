@@ -17,7 +17,7 @@ export const handler: Handler = async (event: ContactRequestEvent) => {
   await verifyRecaptcha(recaptchaToken)
 
   try {
-    sesClient.send(
+    await sesClient.send(
       new SendEmailCommand({
         Content: {
           Template: {

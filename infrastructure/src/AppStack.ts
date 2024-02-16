@@ -16,6 +16,7 @@ export type AppStackConfig = {
   contactRequestEmailDestination: string
   contactRequestEmailSource: string
   recaptchaSecret: string
+  sesIdentityArn: string
   url: string
 }
 
@@ -30,6 +31,7 @@ export class AppStack extends Stack {
       contactRequestEmailDestination,
       contactRequestEmailSource,
       recaptchaSecret,
+      sesIdentityArn,
       tags,
       url,
     } = props
@@ -58,10 +60,16 @@ export class AppStack extends Stack {
       stage,
       subjectPart: 'You have a contact request from {{name}}',
     })
+
     const sendEmailPolicy = new PolicyStatement({
-      actions: ['ses:SendEmail'],
+      actions: ['ses:SendTemplatedEmail'],
+      conditions: {
+        'ForAllValues:StringEquals': {
+          'ses:Recipients': contactRequestEmailDestination,
+        },
+      },
       effect: Effect.ALLOW,
-      resources: [emailTemplate.arn],
+      resources: [emailTemplate.arn, sesIdentityArn],
     })
 
     new Node20Lambda<ContactRequestEnvironment>(this, 'contactRequest', {
