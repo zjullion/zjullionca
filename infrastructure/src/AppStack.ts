@@ -1,5 +1,5 @@
 import { Stack, StackProps } from 'aws-cdk-lib'
-import { DomainName, HttpApi, HttpMethod } from 'aws-cdk-lib/aws-apigatewayv2'
+import { CorsHttpMethod, DomainName, HttpApi, HttpMethod } from 'aws-cdk-lib/aws-apigatewayv2'
 import { HttpLambdaIntegration } from 'aws-cdk-lib/aws-apigatewayv2-integrations'
 import { Certificate } from 'aws-cdk-lib/aws-certificatemanager'
 import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam'
@@ -108,6 +108,11 @@ export class AppStack extends Stack {
       domainName: `api.${url}`,
     })
     const apiGateway = new HttpApi(this, `zjullion-api-${stage}`, {
+      corsPreflight: {
+        allowHeaders: ['*'],
+        allowMethods: [CorsHttpMethod.POST],
+        allowOrigins: [`https://${url}`],
+      },
       defaultDomainMapping: {
         domainName: apiDomainName,
       },

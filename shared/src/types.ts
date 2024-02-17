@@ -1,3 +1,7 @@
+export type ApiGatewayEvent = {
+  body: string
+}
+
 export type AddVisitorEnvironment = {
   RECAPTCHA_SECRET: string
 }

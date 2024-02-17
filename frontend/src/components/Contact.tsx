@@ -37,6 +37,30 @@ const StyledButton = styled.button`
 
 const EMAIL_REGEX = /[^@]+@[^@]+\.[^@]+/
 
+type FetchResolver = (error?: string) => void
+
+const submitContactRequest = async (event: ContactRequestEvent, resolveFetch: FetchResolver) => {
+  try {
+    const response = await fetch(
+      new Request('https://api.zjullion.ca/contact-request', {
+        body: JSON.stringify(event),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      }),
+    )
+    if (response.status === 200) {
+      resolveFetch()
+    } else {
+      resolveFetch(await response.text())
+    }
+  } catch (error) {
+    resolveFetch('Unexpected network error - please try again.')
+  }
+}
+
 export const Contact: FunctionComponent = () => {
   const [name, setName] = useState<string>('')
   const [email, setEmail] = useState<string>('')
@@ -76,7 +100,7 @@ export const Contact: FunctionComponent = () => {
       return
     }
 
-    let resolveFetch: (error?: string) => void = () => null
+    let resolveFetch: FetchResolver = () => null
     const fetchPromise = new Promise<string | undefined>((resolve) => {
       resolveFetch = resolve
     })
@@ -85,26 +109,11 @@ export const Contact: FunctionComponent = () => {
       grecaptcha
         .execute('6LdT_2QpAAAAAKa5xr-stEqcBbAILRqV-hFMyecR', { action: 'submit_contact_form' })
         .then(
-          async (recaptchaToken) => {
+          (recaptchaToken) => {
             const event: ContactRequestEvent = { email, message, name, recaptchaToken }
-            try {
-              const response = await fetch(
-                new Request('api.zjullion.ca/contact-request', {
-                  body: new URLSearchParams(event),
-                }),
-              )
-              if (response.status === 200) {
-                resolveFetch()
-              } else {
-                resolveFetch(await response.text())
-              }
-            } catch {
-              resolveFetch('An unexpected error occurred - please try again.')
-            }
+            submitContactRequest(event, resolveFetch)
           },
-          () => {
-            resolveFetch('An unexpected error occurred - please try again.')
-          },
+          () => resolveFetch('reCAPTCHA error - please try again.'),
         )
     })
 

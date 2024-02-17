@@ -1,6 +1,6 @@
 import { SendEmailCommand, SESv2Client } from '@aws-sdk/client-sesv2'
 import { Handler } from 'aws-lambda'
-import { ContactRequestEnvironment, ContactRequestEvent } from 'shared/types'
+import { ApiGatewayEvent, ContactRequestEnvironment, ContactRequestEvent } from 'shared/types'
 
 import sanitize from '/opt/sanitize'
 import verifyRecaptcha from '/opt/verifyRecaptcha'
@@ -11,19 +11,20 @@ declare const process: {
 
 const sesClient = new SESv2Client()
 
-export const handler: Handler = async (event: ContactRequestEvent) => {
-  const { email, message, name, recaptchaToken } = event
-
+export const handler: Handler = async (rawEvent: ApiGatewayEvent) => {
   try {
-    await verifyRecaptcha(recaptchaToken)
-  } catch {
-    return {
-      body: 'reCAPTCHA verification failed - please try again.',
-      statusCode: 500,
+    const event: ContactRequestEvent = JSON.parse(rawEvent.body)
+    const { email, message, name, recaptchaToken } = event
+
+    try {
+      await verifyRecaptcha(recaptchaToken)
+    } catch {
+      return {
+        body: 'reCAPTCHA verification failed - please try again.',
+        statusCode: 500,
+      }
     }
-  }
 
-  try {
     await sesClient.send(
       new SendEmailCommand({
         Content: {
@@ -42,7 +43,7 @@ export const handler: Handler = async (event: ContactRequestEvent) => {
         FromEmailAddress: process.env.EMAIL_SOURCE,
       }),
     )
-  } catch (error) {
+  } catch {
     return {
       body: 'Message sending failed - please try again.',
       statusCode: 500,
