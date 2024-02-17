@@ -30,3 +30,7 @@ jobs:
         env:
           ACCOUNT: ${{ secrets.ACCOUNT }}
           CERT_ARN: ${{ secrets.CERT_ARN }}
+          CONTACT_REQUEST_EMAIL_DESTINATION: ${{ secrets.CONTACT_REQUEST_EMAIL_DESTINATION }}
+          CONTACT_REQUEST_EMAIL_SOURCE: ${{ secrets.CONTACT_REQUEST_EMAIL_SOURCE }}
+          RECAPTCHA_SECRET: ${{ secrets.RECAPTCHA_SECRET }}
+          SES_IDENTITY_ARN: ${{ secrets.SES_IDENTITY_ARN }}
