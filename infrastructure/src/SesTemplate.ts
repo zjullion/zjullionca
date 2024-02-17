@@ -1,4 +1,4 @@
-import { CfnOutput, ScopedAws } from 'aws-cdk-lib'
+import { ScopedAws } from 'aws-cdk-lib'
 import { CfnTemplate } from 'aws-cdk-lib/aws-ses'
 import { Construct } from 'constructs'
 import { readFileSync } from 'fs'
@@ -18,7 +18,7 @@ export class SesTemplate extends Construct {
 
   constructor(scope: Construct, id: string, props: SesTemplateConfig) {
     super(scope, id)
-    const { htmlTemplate, stage, subjectPart, name } = props
+    const { htmlTemplate, name, stage, subjectPart } = props
 
     const templateName = `${name}-${stage}`
     const { accountId, region } = new ScopedAws(this)
