@@ -1,4 +1,5 @@
 import { FunctionComponent, useState } from 'react'
+import { ContactRequestEvent } from 'shared/types'
 import { css, styled } from 'styled-components'
 
 import { FlexChild, FlexDiv, SafeLink, Text, Title } from './base'
@@ -8,6 +9,7 @@ const INPUT_CSS = css`
   padding: 2px;
   margin: 2px 0 12px 5px;
   font-size: 0.95em;
+  font-family: sans-serif;
 `
 
 const StyledInput = styled.input`
@@ -24,11 +26,40 @@ const ErrorMessage = styled(Text)`
   margin: 0 0 0 5px;
 `
 
+const SuccessMessage = styled(Text)`
+  color: green;
+  margin: 0 0 0 5px;
+`
+
 const StyledButton = styled.button`
   font-size: 0.9em;
 `
 
 const EMAIL_REGEX = /[^@]+@[^@]+\.[^@]+/
+
+type FetchResolver = (error?: string) => void
+
+const submitContactRequest = async (event: ContactRequestEvent, resolveFetch: FetchResolver) => {
+  try {
+    const response = await fetch(
+      new Request('https://api.zjullion.ca/contact-request', {
+        body: JSON.stringify(event),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      }),
+    )
+    if (response.status === 200) {
+      resolveFetch()
+    } else {
+      resolveFetch(await response.text())
+    }
+  } catch (error) {
+    resolveFetch('Unexpected network error - please try again.')
+  }
+}
 
 export const Contact: FunctionComponent = () => {
   const [name, setName] = useState<string>('')
@@ -40,24 +71,59 @@ export const Contact: FunctionComponent = () => {
   const [messageError, setMessageError] = useState<string | undefined>()
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const [submitSuccess, setSubmitSuccess] = useState<boolean>(false)
+  const [submitError, setSubmitError] = useState<string | undefined>()
 
   const submit = async () => {
+    setSubmitError(undefined)
     setIsSubmitting(true)
+    let hasError = false
+
     if (name.length === 0) {
       setNameError('Name required.')
+      hasError = true
     }
     if (email.length === 0) {
       setEmailError('Email required.')
+      hasError = true
     } else if (!EMAIL_REGEX.test(email)) {
       setEmailError('Invalid email.')
+      hasError = true
     }
     if (message.length === 0) {
       setMessageError('Message required.')
+      hasError = true
     }
-    if (nameError == null && emailError == null && messageError == null) {
-      console.log('TODO')
+
+    if (hasError) {
+      setIsSubmitting(false)
+      return
     }
-    setIsSubmitting(false)
+
+    let resolveFetch: FetchResolver = () => null
+    const fetchPromise = new Promise<string | undefined>((resolve) => {
+      resolveFetch = resolve
+    })
+
+    grecaptcha.ready(() => {
+      grecaptcha
+        .execute('6LdT_2QpAAAAAKa5xr-stEqcBbAILRqV-hFMyecR', { action: 'submit_contact_form' })
+        .then(
+          (recaptchaToken) => {
+            const event: ContactRequestEvent = { email, message, name, recaptchaToken }
+            submitContactRequest(event, resolveFetch)
+          },
+          () => resolveFetch('reCAPTCHA error - please try again.'),
+        )
+    })
+
+    const error = await fetchPromise
+    if (error == null) {
+      setSubmitSuccess(true)
+    } else {
+      setSubmitError(error)
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -120,6 +186,10 @@ export const Contact: FunctionComponent = () => {
         <StyledButton disabled={isSubmitting} onClick={submit}>
           Submit
         </StyledButton>
+        {submitError != null ? <ErrorMessage>{submitError}</ErrorMessage> : undefined}
+        {submitSuccess ? (
+          <SuccessMessage>Your message has been received.</SuccessMessage>
+        ) : undefined}
       </FlexChild>
     </FlexDiv>
   )

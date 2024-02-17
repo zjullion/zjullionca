@@ -1,9 +1,13 @@
 {
   "extends": "../common.tsconfig.json",
   "compilerOptions": {
+    "noEmit": false,
     "jsx": "react-jsx",
     "lib": ["DOM", "ESNext"],
-    "sourceMap": true
+    "sourceMap": true,
+    "paths": {
+      "shared/*": ["../shared/src/*"]
+    }
   },
   "include": ["./src/**/*"]
 }

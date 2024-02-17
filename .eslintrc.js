@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { readdirSync } = require('fs')
+const { resolve } = require('path')
+
 const commonExtends = [
   'eslint:recommended',
   'plugin:@typescript-eslint/eslint-recommended',
@@ -68,19 +72,19 @@ const commonRules = {
 
 const generateConfig = (directory, env) => ({
   env,
-  files: [`${directory}/**/**.{ts,tsx}`],
+  files: [`${directory}/{src,scripts}/**/*.{ts,tsx}`],
   parserOptions: {
     project: `${directory}/tsconfig.json`,
   },
 })
 
-const backendDirs = ['addVisitor', 'sendEmail']
-const backendOverrides = backendDirs.map((directory) => ({
-  ...generateConfig(`backend/${directory}`, { browser: false, es6: true, node: true }),
+const backendDirectories = readdirSync(resolve(__dirname, 'backend'))
+const backendOverrides = backendDirectories.map((directory) => ({
+  ...generateConfig(`backend/${directory}`, { browser: false, node: true }),
 }))
 
 const frontendConfig = {
-  ...generateConfig('frontend', { browser: true, es6: true, node: false }),
+  ...generateConfig('frontend', { browser: true, node: false }),
 
   //config:
   excludedFiles: 'webpack.config.ts',
@@ -111,6 +115,10 @@ const frontendConfig = {
 // eslint-disable-next-line no-undef
 module.exports = {
   //config:
+  env: {
+    browser: false,
+    node: true,
+  },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
@@ -126,5 +134,6 @@ module.exports = {
     ...backendOverrides,
     frontendConfig,
     generateConfig('infrastructure', { browser: false, es6: true, node: true }),
+    generateConfig('shared', { browser: false, es6: true, node: false }),
   ],
 }
