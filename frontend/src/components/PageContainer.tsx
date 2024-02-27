@@ -2,6 +2,8 @@ import { FunctionComponent } from 'react'
 import { Link, LinkProps, Outlet, useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
+import { SafeLink } from './base'
+
 const generateScreenWidthStyles = (
   styles: [string, string, string, string, string, string, string, string],
 ) => {
@@ -118,7 +120,14 @@ export const PageContainer: FunctionComponent = () => {
       <ContentContainer>
         <Outlet />
       </ContentContainer>
-      <BottomBar>testing</BottomBar>
+      <BottomBar>
+        This site uses open source technologies:{' '}
+        <SafeLink content="1" to="https://github.com/emotion-js/emotion" />{' '}
+        <SafeLink content="2" to="https://github.com/uNmAnNeR/imaskjs" />{' '}
+        <SafeLink content="3" to="https://github.com/facebook/react" />{' '}
+        <SafeLink content="4" to="https://github.com/remix-run/react-router" />{' '}
+        <SafeLink content="5" to="https://github.com/styled-components/styled-components" />{' '}
+      </BottomBar>
     </AppContainer>
   )
 }
