@@ -13,6 +13,6 @@ backendDirectories.forEach((directory) => {
     keepNames: true,
     outdir: `backend/${directory}/dist`,
     platform: 'node',
-    target: 'node20',
+    target: 'node22',
   })
 })

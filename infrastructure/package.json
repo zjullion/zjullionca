@@ -2,8 +2,8 @@
   "name": "infrastructure",
   "private": true,
   "engines": {
-    "node": "20",
-    "pnpm": "8"
+    "node": "22",
+    "pnpm": "9"
   },
   "scripts": {
     "aws:deploy": "cdk deploy --require-approval never",
