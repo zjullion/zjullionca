@@ -13,7 +13,7 @@ nvm install "$(cat ./.nvmrc)"
 nvm use
 
 # install pnpm
-npm install -g pnpm@8
+npm install -g pnpm@9
 
 # install all dependencies
 pnpm install:all

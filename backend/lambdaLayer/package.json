@@ -2,8 +2,8 @@
   "name": "lambda-layer",
   "private": true,
   "engines": {
-    "node": "20",
-    "pnpm": "8"
+    "node": "22",
+    "pnpm": "9"
   },
   "scripts": {
     "compile": "tsc",

@@ -4,8 +4,8 @@
   "description": "Website for software developer Zach Jullion",
   "license": "MIT",
   "engines": {
-    "node": "20",
-    "pnpm": "8"
+    "node": "22",
+    "pnpm": "9"
   },
   "scripts": {
     "audit:all": "pnpm audit && pnpm --recursive --no-bail exec pnpm audit",
