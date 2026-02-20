@@ -12,8 +12,8 @@ importers:
         specifier: ^5.0.2
         version: 5.0.2
       aws-cdk-lib:
-        specifier: ^2.79.1
-        version: 2.115.0(constructs@10.3.0)
+        specifier: ^2.189.1
+        version: 2.189.1(constructs@10.3.0)
       constructs:
         specifier: ^10.2.21
         version: 10.3.0
@@ -39,14 +39,18 @@ importers:
 
 packages:
 
-  '@aws-cdk/asset-awscli-v1@2.2.201':
-    resolution: {integrity: sha512-INZqcwDinNaIdb5CtW3ez5s943nX5stGBQS6VOP2JDlOFP81hM3fds/9NDknipqfUkZM43dx+HgVvkXYXXARCQ==}
+  '@aws-cdk/asset-awscli-v1@2.2.266':
+    resolution: {integrity: sha512-MHbJzgk6POXvcmjk9pi/SLQiLuOZzgj9HMuaie8+f5mmLQt8xoS5326xdfAfR/N9CD5g1ioHgwnLPTLn7CI2Vw==}
 
-  '@aws-cdk/asset-kubectl-v20@2.1.2':
-    resolution: {integrity: sha512-3M2tELJOxQv0apCIiuKQ4pAbncz9GuLwnKFqxifWfe77wuMxyTRPmxssYHs42ePqzap1LT6GDcPygGs+hHstLg==}
+  '@aws-cdk/asset-node-proxy-agent-v6@2.1.0':
+    resolution: {integrity: sha512-7bY3J8GCVxLupn/kNmpPc5VJz8grx+4RKfnnJiO1LG+uxkZfANZG3RMHhE+qQxxwkyQ9/MfPtTpf748UhR425A==}
 
-  '@aws-cdk/asset-node-proxy-agent-v6@2.0.1':
-    resolution: {integrity: sha512-DDt4SLdLOwWCjGtltH4VCST7hpOI5DzieuhGZsBpZ+AgJdSI2GCjklCXm0GCTwJG/SolkL5dtQXyUKgg9luBDg==}
+  '@aws-cdk/cloud-assembly-schema@41.2.0':
+    resolution: {integrity: sha512-JaulVS6z9y5+u4jNmoWbHZRs9uGOnmn/ktXygNWKNu1k6lF3ad4so3s18eRu15XCbUIomxN9WPYT6Ehh7hzONw==}
+    engines: {node: '>= 14.15.0'}
+    bundledDependencies:
+      - jsonschema
+      - semver
 
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -92,8 +96,8 @@ packages:
   arg@5.0.2:
     resolution: {integrity: sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==}
 
-  aws-cdk-lib@2.115.0:
-    resolution: {integrity: sha512-PGIwmjo9BcviKxuMfMlUCwevUjwXnaS5h8fxZOM6bN1HXCS/wIusft4tMmkiNYjPiNE1sHJbCDIbxxntCQ/7jg==}
+  aws-cdk-lib@2.189.1:
+    resolution: {integrity: sha512-9JU0yUr2iRTJ1oCPrHyx7hOtBDWyUfyOcdb6arlumJnMcQr2cyAMASY8HuAXHc8Y10ipVp8dRTW+J4/132IIYA==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       constructs: ^10.0.0
@@ -108,6 +112,7 @@ packages:
       - semver
       - table
       - yaml
+      - mime-types
 
   aws-cdk@2.116.1:
     resolution: {integrity: sha512-NBEoLPHHnQxu7QKFf4DlAy737v1Jnsvy6ueM1r8jc/GGr3h0Mm9yD2t4cs3KlcHYM0qNESfQW0SVUMJ5aDCARQ==}
@@ -124,8 +129,8 @@ packages:
   create-require@1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
 
-  diff@4.0.2:
-    resolution: {integrity: sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==}
+  diff@4.0.4:
+    resolution: {integrity: sha512-X07nttJQkwkfKfvTPG/KSnE2OMdcUCao6+eXF3wmnIQRn2aPAHH3VxDbDOdegkd6JbPsXqShpvEOHfAT+nCNwQ==}
     engines: {node: '>=0.3.1'}
 
   dotenv@16.3.1:
@@ -178,11 +183,11 @@ packages:
 
 snapshots:
 
-  '@aws-cdk/asset-awscli-v1@2.2.201': {}
+  '@aws-cdk/asset-awscli-v1@2.2.266': {}
 
-  '@aws-cdk/asset-kubectl-v20@2.1.2': {}
+  '@aws-cdk/asset-node-proxy-agent-v6@2.1.0': {}
 
-  '@aws-cdk/asset-node-proxy-agent-v6@2.0.1': {}
+  '@aws-cdk/cloud-assembly-schema@41.2.0': {}
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
@@ -217,11 +222,11 @@ snapshots:
 
   arg@5.0.2: {}
 
-  aws-cdk-lib@2.115.0(constructs@10.3.0):
+  aws-cdk-lib@2.189.1(constructs@10.3.0):
     dependencies:
-      '@aws-cdk/asset-awscli-v1': 2.2.201
-      '@aws-cdk/asset-kubectl-v20': 2.1.2
-      '@aws-cdk/asset-node-proxy-agent-v6': 2.0.1
+      '@aws-cdk/asset-awscli-v1': 2.2.266
+      '@aws-cdk/asset-node-proxy-agent-v6': 2.1.0
+      '@aws-cdk/cloud-assembly-schema': 41.2.0
       constructs: 10.3.0
 
   aws-cdk@2.116.1:
@@ -234,7 +239,7 @@ snapshots:
 
   create-require@1.1.1: {}
 
-  diff@4.0.2: {}
+  diff@4.0.4: {}
 
   dotenv@16.3.1: {}
 
@@ -262,7 +267,7 @@ snapshots:
       acorn-walk: 8.3.1
       arg: 4.1.3
       create-require: 1.1.1
-      diff: 4.0.2
+      diff: 4.0.4
       make-error: 1.3.6
       typescript: 4.9.5
       v8-compile-cache-lib: 3.0.1
